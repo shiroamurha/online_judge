@@ -74,9 +74,3 @@ class Perfil(BaseModel):
         default=False
     )
 
-
-
-def dez_anos_atras():
-    hj = date.today()
-    dez_anos_atras = hj - relativedelta(years=10)
-    return dez_anos_atras

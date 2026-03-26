@@ -1,7 +1,9 @@
 from django.db import models
 from online_judge.models.base_model import BaseModel
-from django.core.validators import MinValueValidator
-from django.core.validators import MaxValueValidator
+from online_judge.models.categoria import Categoria
+from online_judge.models.linguagem import Linguagem
+#from django.core.validators import MinValueValidator
+#from django.core.validators import MaxValueValidator
 from django.core.validators import MinLengthValidator
 from online_judge.enums.nota import Nota
 from online_judge.enums.limite_memoria import LimiteMemoria
@@ -12,7 +14,7 @@ from datetime import datetime
 
 
 
-class Problema(models.Model):
+class Problema(BaseModel):
 
     cod = models.CharField(
         validators=[MinLengthValidator(4)],
@@ -76,8 +78,17 @@ class Problema(models.Model):
     criado = models.DateTimeField(
         default = datetime.now()
     )
+
     atualizado = models.DateTimeField(
         default = datetime.now()
+    )
+    
+    categoria = models.ManyToManyField(
+        Categoria
+    )
+
+    linguagem = models.ManyToManyField(
+        Linguagem
     )
 
 

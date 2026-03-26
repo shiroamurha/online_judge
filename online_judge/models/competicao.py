@@ -1,5 +1,6 @@
 from django.db import models
 from online_judge.models.base_model import BaseModel
+from online_judge.models.submissao import Submissao
 from django.core.validators import MinValueValidator
 #from django.core.validators import MaxValueValidator
 from django.core.validators import MinLengthValidator
@@ -49,6 +50,12 @@ class Competicao(BaseModel):
         validators=[MinValueValidator(0)]
     )
 
+    submissao_competicao = models.ForeignKey(
+        Submissao,
+        on_delete=models.CASCADE,
+        null=True
+    )
+    
     
 
     def __str__(self):

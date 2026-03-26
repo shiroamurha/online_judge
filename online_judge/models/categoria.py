@@ -23,6 +23,8 @@ class Categoria(BaseModel):
         null=True
     )
 
+
+
     def __str__(self):
         return self.nome
     

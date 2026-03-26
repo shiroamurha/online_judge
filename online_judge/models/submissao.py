@@ -1,5 +1,6 @@
 from django.db import models
 from online_judge.models.base_model import BaseModel
+from online_judge.models.linguagem import Linguagem
 from django.core.validators import MinValueValidator
 #from django.core.validators import MaxValueValidator
 from django.core.validators import MinLengthValidator
@@ -44,7 +45,13 @@ class Submissao(BaseModel):
         max_length=1000
     )
 
+    submissao_linguagem = models.ForeignKey(
+        Linguagem, 
+        on_delete=models.CASCADE,
+        null=True
+    )
     
+
 
     def __str__(self):
         return 'submissao? nao sei oq deveria retornar'

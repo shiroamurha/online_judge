@@ -1,9 +1,11 @@
 from django.db import models
 from online_judge.models.base_model import BaseModel
+from online_judge.models.problema import Problema
 #from django.core.validators import MinValueValidator
 #from django.core.validators import MaxValueValidator
 from django.core.validators import MinLengthValidator
 from datetime import datetime
+
 
 
 class Teste(BaseModel):
@@ -25,6 +27,13 @@ class Teste(BaseModel):
     atualizado = models.DateTimeField(
         default=datetime.now()
     )
+
+    problema = models.ForeignKey(
+        Problema,
+        on_delete=models.CASCADE
+    )
+
+
 
     def __str__(self):
         return self.nome
