@@ -4,6 +4,7 @@ from django.core.validators import MinValueValidator
 #from django.core.validators import MaxValueValidator
 from django.core.validators import MinLengthValidator
 from datetime import datetime
+from django.core.exceptions import ValidationError
 
 
 
@@ -49,6 +50,11 @@ class Competicao(BaseModel):
         validators=[MinValueValidator(0)]
     )
 
+
+
+    def clean(self):
+        if self.freeze > self.termino or self.freeze < self.inicio:
+            raise ValidationError('O Freeze deve estar entre o início e o término.')
 
     
 

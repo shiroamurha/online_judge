@@ -8,6 +8,7 @@ from datetime import datetime, date
 from dateutil.relativedelta import relativedelta
 from judge.enums.genero import Genero
 from judge.enums.idioma import Idioma
+from django.core.exceptions import ValidationError
 
 
 
@@ -79,6 +80,12 @@ class Perfil(BaseModel):
     treinador = models.BooleanField(
         default=False
     )
+
+
+
+    def clean(self):
+        if self.submetidos < self.resolvidos:
+            raise ValidationError('Número de submetidos não pode ser inferior ao de resolvidos.')
 
 
 
